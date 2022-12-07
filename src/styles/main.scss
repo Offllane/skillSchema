@@ -1,4 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+@mixin skill-node {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  background: #ECF0F3;
+  box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 24px rgba(166, 180, 200, 0.7);
+  aspect-ratio: 1 / 1;
+  font-size: 14px;
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #ECF0F3;
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.main-node {
+  @include skill-node;
+  position: relative;
+
+  .orbit {
+    position: absolute;
+    border: 2px solid rgba(0, 0, 0, .3);
+    border-radius: 50%;
+    width: 400px;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.skill-node {
+  @include skill-node;
+  animation: rotate 40s linear infinite;
+
+  .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .orbit {
+    width: 240px;
+  }
+
+  &.node-2 {
+    animation: rotate-2 20s linear infinite;
+
+    .orbit {
+      width: 140px;
+    }
+  }
+
+  &.node-3 {
+    animation: rotate-3 10s linear infinite;
+  }
+
+  &.t-1 {
+    animation-delay: -20s;
+  }
+
+  &.t-2 {
+    animation-delay: -10s;
+  }
+
+  &.t-3 {
+    animation-delay: -5s;
+  }
+}
+
+@for $i from 1 through 2 {
+  .skill-node:nth-of-type(#{$i}) {
+    animation-delay: -1 * random(100) + s;
+  }
+}
+
+@keyframes rotate {
+  from { 	transform: rotate(0deg) translateX(200px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+}
+
+@keyframes rotate-2 {
+  from { 	transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+@keyframes rotate-3 {
+  from { transform: rotate(0deg) translateX(70px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(70px) rotate(-360deg); }
 }
