@@ -1,8 +1,3 @@
-(function () {
-    console.log('here');
-}());
-function () {
-    console.log('here2');
-}
-();
+import { startData } from "./data.js";
+console.log(startData);
 //# sourceMappingURL=main.js.map

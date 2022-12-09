@@ -1,7 +1,3 @@
-(function () {
-  console.log('here');
-}());
+import { startData } from "./data.js";
 
-function () {
-  console.log('here2');
-}();
+console.log(startData);

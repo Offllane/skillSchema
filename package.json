@@ -1,0 +1,15 @@
+{
+  "name": "skillschema",
+  "version": "0.0.0",
+  "description": "A diagram that shows a cool animation by taking data from a list",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "diagram",
+    "animation"
+  ],
+  "author": "Offllane",
+  "license": "ISC"
+}
