@@ -59,32 +59,6 @@ body .wrapper {
 .skill-node .orbit {
   width: 240px;
 }
-.skill-node.node-2 {
-  animation: rotate-2 20s linear infinite;
-}
-.skill-node.node-2 .orbit {
-  width: 140px;
-}
-.skill-node.node-3 {
-  animation: rotate-3 10s linear infinite;
-}
-.skill-node.t-1 {
-  animation-delay: -20s;
-}
-.skill-node.t-2 {
-  animation-delay: -10s;
-}
-.skill-node.t-3 {
-  animation-delay: -5s;
-}
-
-.skill-node:nth-of-type(1) {
-  animation-delay: -79s;
-}
-
-.skill-node:nth-of-type(2) {
-  animation-delay: -96s;
-}
 
 @keyframes rotate {
   from {
@@ -92,22 +66,6 @@ body .wrapper {
   }
   to {
     transform: rotate(360deg) translateX(200px) rotate(-360deg);
-  }
-}
-@keyframes rotate-2 {
-  from {
-    transform: rotate(0deg) translateX(120px) rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg) translateX(120px) rotate(-360deg);
-  }
-}
-@keyframes rotate-3 {
-  from {
-    transform: rotate(0deg) translateX(70px) rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg) translateX(70px) rotate(-360deg);
   }
 }
 

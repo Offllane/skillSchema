@@ -57,49 +57,9 @@ body {
   .orbit {
     width: 240px;
   }
-
-  &.node-2 {
-    animation: rotate-2 20s linear infinite;
-
-    .orbit {
-      width: 140px;
-    }
-  }
-
-  &.node-3 {
-    animation: rotate-3 10s linear infinite;
-  }
-
-  &.t-1 {
-    animation-delay: -20s;
-  }
-
-  &.t-2 {
-    animation-delay: -10s;
-  }
-
-  &.t-3 {
-    animation-delay: -5s;
-  }
-}
-
-@for $i from 1 through 2 {
-  .skill-node:nth-of-type(#{$i}) {
-    animation-delay: -1 * random(100) + s;
-  }
 }
 
 @keyframes rotate {
   from { 	transform: rotate(0deg) translateX(200px) rotate(0deg); }
   to   {  transform: rotate(360deg) translateX(200px) rotate(-360deg); }
-}
-
-@keyframes rotate-2 {
-  from { 	transform: rotate(0deg) translateX(120px) rotate(0deg); }
-  to   {  transform: rotate(360deg) translateX(120px) rotate(-360deg); }
-}
-
-@keyframes rotate-3 {
-  from { transform: rotate(0deg) translateX(70px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(70px) rotate(-360deg); }
 }

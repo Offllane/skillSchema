@@ -1,32 +1,32 @@
 export const startData = [
   {
     id: 1,
-    nodeTitle: 'Frontend',
-    parentId: null
+    parentId: 0,
+    nodeTitle: 'Frontend'
   },
   {
     id: 2,
-    nodeTitle: 'Backend',
-    parentId: null
+    parentId: 0,
+    nodeTitle: 'Backend'
   },
   {
     id: 3,
-    nodeTitle: 'HTML',
-    parentId: 1
+    parentId: 1,
+    nodeTitle: 'HTML'
   },
   {
     id: 4,
-    nodeTitle: 'CSS',
-    parentId: 1
+    parentId: 1,
+    nodeTitle: 'CSS'
   },
   {
     id: 5,
-    nodeTitle: 'JS',
-    parentId: 1
+    parentId: 1,
+    nodeTitle: 'JS'
   },
   {
     id: 6,
-    nodeTitle: 'TS',
-    parentId: 5
+    parentId: 5,
+    nodeTitle: 'TS'
   },
 ]
