@@ -8,10 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 export class SkillNode {
-    constructor(id, parentNodeId, title) {
-        this.id = id;
-        this.parentNodeId = parentNodeId;
-        this.title = title;
+    constructor(skillNodeData) {
+        this.id = skillNodeData.id;
+        this.parentNodeId = skillNodeData.parentId;
+        this.title = skillNodeData.nodeTitle;
         this.createSkillNode().then();
     }
     createSkillNode() {
@@ -50,6 +50,7 @@ export class SkillNode {
         const parentNode = document.getElementById(String(parentNodeId));
         if (!parentNode) {
             console.error(`Element with given id = ${parentNodeId} is not found!`);
+            return;
         }
         parentNode.appendChild(this.nodeElement);
     }

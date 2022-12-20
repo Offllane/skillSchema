@@ -1,10 +1,16 @@
 export class SkillNode {
+  public id!: number;
+  public parentNodeId!: number;
+  public title!: string
+
   private nodeElement: HTMLElement;
 
-  constructor(
-    public id: number,
-    public parentNodeId: number,
-    public title: string) {
+
+  constructor(skillNodeData: ISkillNodeData) {
+    this.id = skillNodeData.id;
+    this.parentNodeId = skillNodeData.parentId;
+    this.title = skillNodeData.nodeTitle;
+
     this.createSkillNode().then();
   }
 
@@ -47,6 +53,7 @@ export class SkillNode {
     const parentNode: HTMLElement = document.getElementById(String(parentNodeId));
     if (!parentNode) {
       console.error(`Element with given id = ${parentNodeId} is not found!`);
+      return;
     }
     parentNode.appendChild(this.nodeElement);
   }

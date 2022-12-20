@@ -1,4 +1,4 @@
-export const startData = [
+export const startData: Array<ISkillNodeData> = [
   {
     id: 1,
     parentId: 0,
