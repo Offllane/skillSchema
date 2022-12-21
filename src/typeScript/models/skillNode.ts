@@ -1,60 +1,37 @@
-export class SkillNode {
+import {SkillNodeElements} from "./SkillNodeElements.js";
+
+export class SkillNode implements ISkillNodeData {
   public id!: number;
   public parentNodeId!: number;
-  public title!: string
+  public nodeTitle!: string;
+  public sameLevelSkillNodesQuantity: number; // how many nodes with same orbit we have
+  public rotationPeriod = 40; // animation time
 
-  private nodeElement: HTMLElement;
-
+  private skillNodeElements: SkillNodeElements = new SkillNodeElements();
 
   constructor(skillNodeData: ISkillNodeData) {
     this.id = skillNodeData.id;
-    this.parentNodeId = skillNodeData.parentId;
-    this.title = skillNodeData.nodeTitle;
+    this.parentNodeId = skillNodeData.parentNodeId;
+    this.nodeTitle = skillNodeData.nodeTitle;
+    this.sameLevelSkillNodesQuantity = skillNodeData.sameLevelSkillNodesQuantity;
 
-    this.createSkillNode().then();
+    this.createSkillNode();
   }
 
-  private async createSkillNode() {
-    this.nodeElement = await this.createNodeStructure();
-    await this.addNodeToParentNode(this.parentNodeId);
+  private createSkillNode() {
+    this.skillNodeElements.createNodeStructure(this);
+    this.skillNodeElements.addNodeToSchema(this.parentNodeId);
+    this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
   }
 
-  /**
-   * create structure like this
-   * <div class="skill-node">
-   *   <div class="container" id="{{this.id}}">
-   *     <div>{{this.title}}</div>
-   *     <div class="orbit"></div>
-   *   </div>
-   * </div>
-   */
-  private async createNodeStructure(): Promise<HTMLElement> {
-    const skillNodeElement = document.createElement('div');
-    skillNodeElement.classList.add('skill-node');
-
-    const containerElement = document.createElement('div');
-    containerElement.classList.add('container');
-    containerElement.id = String(this.id);
-    skillNodeElement.appendChild(containerElement);
-
-    const nodeTitleElement = document.createElement('div');
-    nodeTitleElement.innerText = this.title;
-    containerElement.appendChild(nodeTitleElement);
-
-    const orbitElement = document.createElement('div');
-    orbitElement.classList.add('orbit');
-    containerElement.appendChild(orbitElement);
-
-
-    return skillNodeElement;
+  private setNodeStartPositionUsingDelay(currentOrderPosition: number): void {
+    const delayBetweenNodes = this.rotationPeriod / this.sameLevelSkillNodesQuantity;
+    this.skillNodeElements.animationDelay = -delayBetweenNodes * currentOrderPosition;
   }
 
-  private addNodeToParentNode(parentNodeId: number): void {
-    const parentNode: HTMLElement = document.getElementById(String(parentNodeId));
-    if (!parentNode) {
-      console.error(`Element with given id = ${parentNodeId} is not found!`);
-      return;
-    }
-    parentNode.appendChild(this.nodeElement);
+  private getCurrentOrderPosition(): number {
+    const parentNodeChildren = Array.from(document.getElementById(String(this.parentNodeId)).children);
+    const sameLevelSkillNodes = parentNodeChildren.filter((htmlElement: HTMLElement) => htmlElement.classList.contains('skill-node'));
+    return sameLevelSkillNodes.length;
   }
 }

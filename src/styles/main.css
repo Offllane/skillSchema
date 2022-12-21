@@ -48,7 +48,6 @@ body .wrapper {
   box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 24px rgba(166, 180, 200, 0.7);
   aspect-ratio: 1/1;
   font-size: 14px;
-  animation: rotate 40s linear infinite;
 }
 .skill-node .container {
   position: relative;

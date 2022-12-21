@@ -1,5 +1,7 @@
 interface ISkillNodeData {
   id: number;
-  parentId: number;
+  parentNodeId: number;
   nodeTitle: string;
+  sameLevelSkillNodesQuantity?: number;
+  rotationPeriod?: number;
 }

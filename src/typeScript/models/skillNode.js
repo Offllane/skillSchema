@@ -1,58 +1,27 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
+import { SkillNodeElements } from "./SkillNodeElements.js";
 export class SkillNode {
     constructor(skillNodeData) {
+        this.rotationPeriod = 40; // animation time
+        this.skillNodeElements = new SkillNodeElements();
         this.id = skillNodeData.id;
-        this.parentNodeId = skillNodeData.parentId;
-        this.title = skillNodeData.nodeTitle;
-        this.createSkillNode().then();
+        this.parentNodeId = skillNodeData.parentNodeId;
+        this.nodeTitle = skillNodeData.nodeTitle;
+        this.sameLevelSkillNodesQuantity = skillNodeData.sameLevelSkillNodesQuantity;
+        this.createSkillNode();
     }
     createSkillNode() {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.nodeElement = yield this.createNodeStructure();
-            yield this.addNodeToParentNode(this.parentNodeId);
-        });
+        this.skillNodeElements.createNodeStructure(this);
+        this.skillNodeElements.addNodeToSchema(this.parentNodeId);
+        this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
     }
-    /**
-     * create structure like this
-     * <div class="skill-node">
-     *   <div class="container" id="{{this.id}}">
-     *     <div>{{this.title}}</div>
-     *     <div class="orbit"></div>
-     *   </div>
-     * </div>
-     */
-    createNodeStructure() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const skillNodeElement = document.createElement('div');
-            skillNodeElement.classList.add('skill-node');
-            const containerElement = document.createElement('div');
-            containerElement.classList.add('container');
-            containerElement.id = String(this.id);
-            skillNodeElement.appendChild(containerElement);
-            const nodeTitleElement = document.createElement('div');
-            nodeTitleElement.innerText = this.title;
-            containerElement.appendChild(nodeTitleElement);
-            const orbitElement = document.createElement('div');
-            orbitElement.classList.add('orbit');
-            containerElement.appendChild(orbitElement);
-            return skillNodeElement;
-        });
+    setNodeStartPositionUsingDelay(currentOrderPosition) {
+        const delayBetweenNodes = this.rotationPeriod / this.sameLevelSkillNodesQuantity;
+        this.skillNodeElements.animationDelay = -delayBetweenNodes * currentOrderPosition;
     }
-    addNodeToParentNode(parentNodeId) {
-        const parentNode = document.getElementById(String(parentNodeId));
-        if (!parentNode) {
-            console.error(`Element with given id = ${parentNodeId} is not found!`);
-            return;
-        }
-        parentNode.appendChild(this.nodeElement);
+    getCurrentOrderPosition() {
+        const parentNodeChildren = Array.from(document.getElementById(String(this.parentNodeId)).children);
+        const sameLevelSkillNodes = parentNodeChildren.filter((htmlElement) => htmlElement.classList.contains('skill-node'));
+        return sameLevelSkillNodes.length;
     }
 }
 //# sourceMappingURL=skillNode.js.map
