@@ -2,6 +2,9 @@ export class SkillNodeElements {
     set animationDelay(animationDelay) {
         this.skillNodeElement.style.animationDelay = `${animationDelay}s`;
     }
+    setOrbitWidth(orbitWidth) {
+        this.orbitElement.style.width = `${orbitWidth}px`;
+    }
     /**
      * create structure like this
      * <div class="skill-node">
@@ -15,7 +18,7 @@ export class SkillNodeElements {
         this.createSkillNodeElement(skillNode.rotationPeriod);
         this.createContainerElement(skillNode.id);
         this.createNodeTitleElement(skillNode.nodeTitle);
-        this.createOrbitElement();
+        this.createOrbitElement(skillNode.orbitWidth);
     }
     createSkillNodeElement(rotationPeriod) {
         this.skillNodeElement = document.createElement('div');
@@ -33,9 +36,10 @@ export class SkillNodeElements {
         this.nodeTitleElement.innerText = title;
         this.containerElement.appendChild(this.nodeTitleElement);
     }
-    createOrbitElement() {
+    createOrbitElement(orbitWidth) {
         this.orbitElement = document.createElement('div');
         this.orbitElement.classList.add('orbit');
+        this.orbitElement.style.width = `${orbitWidth}px`;
         this.containerElement.appendChild(this.orbitElement);
     }
     /**
@@ -51,4 +55,4 @@ export class SkillNodeElements {
         parentNode.appendChild(this.skillNodeElement);
     }
 }
-//# sourceMappingURL=SkillNodeElements.js.map
+//# sourceMappingURL=skillNodeElements.js.map

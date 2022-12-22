@@ -1,7 +1,11 @@
-interface ISkillNodeData {
+interface ISkillNodeStartData {
   id: number;
   parentNodeId: number;
   nodeTitle: string;
-  sameLevelSkillNodesQuantity?: number;
-  rotationPeriod?: number;
+}
+
+interface ISkillNode extends ISkillNodeStartData {
+  sameLevelSkillNodesQuantity: number;
+  rotationPeriod: number;
+  orbitWidth: number;
 }

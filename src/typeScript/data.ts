@@ -1,4 +1,4 @@
-export const startData: Array<ISkillNodeData> = [
+export const startData: Array<ISkillNodeStartData> = [
   {
     id: 1,
     parentNodeId: 0,
@@ -11,22 +11,27 @@ export const startData: Array<ISkillNodeData> = [
   },
   {
     id: 3,
-    parentNodeId: 0,
+    parentNodeId: 1,
     nodeTitle: 'HTML'
   },
-  // {
-  //   id: 4,
-  //   parentNodeId: 1,
-  //   nodeTitle: 'CSS'
-  // },
-  // {
-  //   id: 5,
-  //   parentNodeId: 1,
-  //   nodeTitle: 'JS'
-  // },
-  // {
-  //   id: 6,
-  //   parentNodeId: 5,
-  //   nodeTitle: 'TS'
-  // },
+  {
+    id: 4,
+    parentNodeId: 1,
+    nodeTitle: 'CSS'
+  },
+  {
+    id: 5,
+    parentNodeId: 1,
+    nodeTitle: 'JS'
+  },
+  {
+    id: 6,
+    parentNodeId: 5,
+    nodeTitle: 'TS'
+  },
+  {
+    id: 7,
+    parentNodeId: 5,
+    nodeTitle: 'TS'
+  },
 ]

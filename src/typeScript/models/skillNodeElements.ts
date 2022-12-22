@@ -4,9 +4,12 @@ export class SkillNodeElements {
   public nodeTitleElement: HTMLElement;
   public orbitElement: HTMLElement;
 
-
   public set animationDelay(animationDelay: number) {
     this.skillNodeElement.style.animationDelay =`${animationDelay}s`;
+  }
+
+  public setOrbitWidth(orbitWidth: number) {
+    this.orbitElement.style.width =  `${orbitWidth}px`
   }
 
   /**
@@ -18,11 +21,11 @@ export class SkillNodeElements {
    *   </div>
    * </div>
    */
-  public createNodeStructure(skillNode: ISkillNodeData): void {
+  public createNodeStructure(skillNode: ISkillNode): void {
     this.createSkillNodeElement(skillNode.rotationPeriod);
     this.createContainerElement(skillNode.id);
     this.createNodeTitleElement(skillNode.nodeTitle);
-    this.createOrbitElement();
+    this.createOrbitElement(skillNode.orbitWidth);
   }
 
   public createSkillNodeElement(rotationPeriod: number): void {
@@ -44,9 +47,10 @@ export class SkillNodeElements {
     this.containerElement.appendChild(this.nodeTitleElement);
   }
 
-  public createOrbitElement(): void {
+  public createOrbitElement(orbitWidth: number): void {
     this.orbitElement = document.createElement('div');
     this.orbitElement.classList.add('orbit');
+    this.orbitElement.style.width = `${orbitWidth}px`
     this.containerElement.appendChild(this.orbitElement);
   }
 
