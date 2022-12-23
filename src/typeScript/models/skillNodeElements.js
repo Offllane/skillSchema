@@ -4,6 +4,7 @@ export class SkillNodeElements {
     }
     setOrbitWidth(orbitWidth) {
         this.orbitElement.style.width = `${orbitWidth}px`;
+        this.skillNodeElement.style.setProperty('--orbitWidth', `${orbitWidth}px`); // this property is used in rotate animation
     }
     /**
      * create structure like this

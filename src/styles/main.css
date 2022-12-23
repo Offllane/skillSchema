@@ -56,15 +56,15 @@ body .wrapper {
   align-items: center;
 }
 .skill-node .orbit {
-  width: 240px;
+  width: 200px;
 }
 
 @keyframes rotate {
   from {
-    transform: rotate(0deg) translateX(200px) rotate(0deg);
+    transform: rotate(0deg) translateX(var(--orbitWidth)) rotate(0deg);
   }
   to {
-    transform: rotate(360deg) translateX(200px) rotate(-360deg);
+    transform: rotate(360deg) translateX(var(--orbitWidth)) rotate(-360deg);
   }
 }
 
