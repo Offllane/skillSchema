@@ -15,7 +15,9 @@ export class SkillNode {
         this.skillNodeElements.createNodeStructure(this);
         this.skillNodeElements.addNodeToSchema(this.parentNodeId);
         this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
-        this.setOrbitWidth(this.getCurrentDepthLevel());
+        const currentDepthLevel = this.getCurrentDepthLevel();
+        this.setOrbitWidth(currentDepthLevel);
+        this.setRotationRadius(currentDepthLevel);
     }
     setNodeStartPositionUsingDelay(currentOrderPosition) {
         const delayBetweenNodes = this.rotationPeriod / this.sameLevelSkillNodesQuantity;
@@ -27,7 +29,11 @@ export class SkillNode {
         return sameLevelSkillNodes.length;
     }
     setOrbitWidth(currentNodeDepthLevel) {
-        this.skillNodeElements.setOrbitWidth(SkillNode.calculateOrbitWidth(currentNodeDepthLevel));
+        this.skillNodeElements.orbitWidth = SkillNode.calculateOrbitWidth(currentNodeDepthLevel);
+    }
+    setRotationRadius(currentNodeDepthLevel) {
+        // should be half of parent node orbit width
+        this.skillNodeElements.rotationRadius = SkillNode.calculateOrbitWidth(currentNodeDepthLevel - 1);
     }
     static calculateOrbitWidth(currentNodeDepthLevel) {
         return 400 - currentNodeDepthLevel * 100;

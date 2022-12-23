@@ -8,9 +8,13 @@ export class SkillNodeElements {
     this.skillNodeElement.style.animationDelay =`${animationDelay}s`;
   }
 
-  public setOrbitWidth(orbitWidth: number) {
-    this.orbitElement.style.width =  `${orbitWidth}px`;
-    this.skillNodeElement.style.setProperty('--orbitWidth', `${orbitWidth}px`); // this property is used in rotate animation
+  public set orbitWidth(orbitWidth: number) {
+    this.orbitElement.style.width = `${orbitWidth}px`;
+  }
+
+  public set rotationRadius(parentOrbitWidthRadius: number) {
+    // this property is used in rotate animation
+    this.skillNodeElement.style.setProperty('--halfOfOrbitWidth', `${parentOrbitWidthRadius / 2}px`);
   }
 
   /**

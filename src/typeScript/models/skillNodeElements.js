@@ -2,9 +2,12 @@ export class SkillNodeElements {
     set animationDelay(animationDelay) {
         this.skillNodeElement.style.animationDelay = `${animationDelay}s`;
     }
-    setOrbitWidth(orbitWidth) {
+    set orbitWidth(orbitWidth) {
         this.orbitElement.style.width = `${orbitWidth}px`;
-        this.skillNodeElement.style.setProperty('--orbitWidth', `${orbitWidth}px`); // this property is used in rotate animation
+    }
+    set rotationRadius(parentOrbitWidthRadius) {
+        // this property is used in rotate animation
+        this.skillNodeElement.style.setProperty('--halfOfOrbitWidth', `${parentOrbitWidthRadius / 2}px`);
     }
     /**
      * create structure like this

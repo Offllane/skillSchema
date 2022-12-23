@@ -16,6 +16,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -59,6 +60,6 @@ body {
 }
 
 @keyframes rotate {
-  from { 	transform: rotate(0deg) translateX(var(--orbitWidth)) rotate(0deg); }
-  to   {  transform: rotate(360deg) translateX(var(--orbitWidth)) rotate(-360deg); }
+  from { 	transform: rotate(0deg) translateX(var(--halfOfOrbitWidth)) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(var(--halfOfOrbitWidth)) rotate(-360deg); }
 }

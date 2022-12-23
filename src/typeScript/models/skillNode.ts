@@ -24,7 +24,10 @@ export class SkillNode implements ISkillNodeStartData {
     this.skillNodeElements.createNodeStructure(this);
     this.skillNodeElements.addNodeToSchema(this.parentNodeId);
     this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
-    this.setOrbitWidth(this.getCurrentDepthLevel());
+
+    const currentDepthLevel = this.getCurrentDepthLevel();
+    this.setOrbitWidth(currentDepthLevel);
+    this.setRotationRadius(currentDepthLevel);
   }
 
   private setNodeStartPositionUsingDelay(currentOrderPosition: number): void {
@@ -39,7 +42,12 @@ export class SkillNode implements ISkillNodeStartData {
   }
 
   private setOrbitWidth(currentNodeDepthLevel: number): void {
-    this.skillNodeElements.setOrbitWidth(SkillNode.calculateOrbitWidth(currentNodeDepthLevel));
+    this.skillNodeElements.orbitWidth = SkillNode.calculateOrbitWidth(currentNodeDepthLevel);
+  }
+
+  private setRotationRadius(currentNodeDepthLevel: number): void {
+    // should be half of parent node orbit width
+    this.skillNodeElements.rotationRadius = SkillNode.calculateOrbitWidth(currentNodeDepthLevel - 1);
   }
 
   private static calculateOrbitWidth(currentNodeDepthLevel: number) {
