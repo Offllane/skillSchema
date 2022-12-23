@@ -56,6 +56,10 @@ body {
 
   .orbit {
     width: 200px;
+
+    &:last-child {
+      display: none;
+    }
   }
 }
 

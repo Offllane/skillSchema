@@ -59,6 +59,9 @@ body .wrapper {
 .skill-node .orbit {
   width: 200px;
 }
+.skill-node .orbit:last-child {
+  display: none;
+}
 
 @keyframes rotate {
   from {
