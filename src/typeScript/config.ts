@@ -1,4 +1,4 @@
 export const config = {
-  startOrbitWidth: 400,
+  startOrbitWidth: 350,
   startRotationPeriod: 180
 }

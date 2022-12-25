@@ -34,7 +34,7 @@ body .wrapper {
   position: absolute;
   border: 2px solid rgba(0, 0, 0, 0.3);
   border-radius: 50%;
-  width: 400px;
+  width: 500px;
   aspect-ratio: 1/1;
 }
 
