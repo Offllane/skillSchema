@@ -1,9 +1,10 @@
 import { SkillNodeElements } from "./skillNodeElements.js";
 import { startData } from "../data.js";
+import { config } from "../config.js";
 export class SkillNode {
     constructor(skillNodeData) {
-        this.rotationPeriod = 40; // animation time
-        this.orbitWidth = 400;
+        this.rotationPeriod = config.startRotationPeriod; // animation time
+        this.orbitWidth = config.startOrbitWidth;
         this.skillNodeElements = new SkillNodeElements();
         this.id = skillNodeData.id;
         this.parentNodeId = skillNodeData.parentNodeId;
@@ -14,10 +15,11 @@ export class SkillNode {
     createSkillNode() {
         this.skillNodeElements.createNodeStructure(this);
         this.skillNodeElements.addNodeToSchema(this.parentNodeId);
-        this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
         const currentDepthLevel = this.getCurrentDepthLevel();
         this.setOrbitWidth(currentDepthLevel);
         this.setRotationRadius(currentDepthLevel);
+        this.setRotationPeriod(currentDepthLevel);
+        this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
     }
     setNodeStartPositionUsingDelay(currentOrderPosition) {
         const delayBetweenNodes = this.rotationPeriod / this.sameLevelSkillNodesQuantity;
@@ -35,8 +37,15 @@ export class SkillNode {
         // should be half of parent node orbit width
         this.skillNodeElements.rotationRadius = SkillNode.calculateOrbitWidth(currentNodeDepthLevel - 1);
     }
+    setRotationPeriod(currentNodeDepthLevel) {
+        this.rotationPeriod = SkillNode.calculateNodeRotationPeriod(currentNodeDepthLevel);
+        this.skillNodeElements.rotationPeriod = this.rotationPeriod;
+    }
     static calculateOrbitWidth(currentNodeDepthLevel) {
-        return 400 - currentNodeDepthLevel * 100;
+        return config.startOrbitWidth - currentNodeDepthLevel * 100;
+    }
+    static calculateNodeRotationPeriod(currentNodeDepthLevel) {
+        return config.startRotationPeriod - 55 * currentNodeDepthLevel;
     }
     getCurrentDepthLevel() {
         let depthLevel = 1;

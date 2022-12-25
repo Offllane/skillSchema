@@ -17,6 +17,10 @@ export class SkillNodeElements {
     this.skillNodeElement.style.setProperty('--halfOfOrbitWidth', `${parentOrbitWidthRadius / 2}px`);
   }
 
+  public set rotationPeriod(rotationPeriod: number) {
+    this.skillNodeElement.style.animation = `rotate ${rotationPeriod}s linear infinite`;
+  }
+
   /**
    * create structure like this
    * <div class="skill-node">
@@ -27,16 +31,15 @@ export class SkillNodeElements {
    * </div>
    */
   public createNodeStructure(skillNode: ISkillNode): void {
-    this.createSkillNodeElement(skillNode.rotationPeriod);
+    this.createSkillNodeElement();
     this.createContainerElement(skillNode.id);
     this.createNodeTitleElement(skillNode.nodeTitle);
     this.createOrbitElement(skillNode.orbitWidth);
   }
 
-  public createSkillNodeElement(rotationPeriod: number): void {
+  public createSkillNodeElement(): void {
     this.skillNodeElement = document.createElement('div');
     this.skillNodeElement.classList.add('skill-node');
-    this.skillNodeElement.style.animation = `rotate ${rotationPeriod}s linear infinite`;
   }
 
   public createContainerElement(id: number): void {
