@@ -1,6 +1,7 @@
 import {SkillNodeElements} from "./skillNodeElements.js";
 import {startData} from "../data.js";
-import {config} from "../config.js";
+import {config} from "../configs.js";
+import {depthNodeConfig} from "../configs.js"
 
 export class SkillNode implements ISkillNodeStartData {
   public id!: number;
@@ -24,12 +25,18 @@ export class SkillNode implements ISkillNodeStartData {
   private createSkillNode() {
     this.skillNodeElements.createNodeStructure(this);
     this.skillNodeElements.addNodeToSchema(this.parentNodeId);
+    this.setNodeParamsDependedOnDepth();
 
-    const currentDepthLevel = this.getCurrentDepthLevel();
-    this.setOrbitWidth(currentDepthLevel);
-    this.setRotationRadius(currentDepthLevel);
-    this.setRotationPeriod(currentDepthLevel)
     this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
+  }
+
+  private setNodeParamsDependedOnDepth(): void {
+    const currentDepthLevel = this.getCurrentDepthLevel();
+    const {nodeWidth, orbitWidth, rotationPeriod} = depthNodeConfig[currentDepthLevel];
+    this.skillNodeElements.nodeWidth = nodeWidth;
+    this.skillNodeElements.orbitWidth = orbitWidth;
+    this.skillNodeElements.rotationPeriod = rotationPeriod;
+    this.skillNodeElements.rotationRadius = depthNodeConfig[currentDepthLevel - 1].orbitWidth; // parent node orbit width
   }
 
   private setNodeStartPositionUsingDelay(currentOrderPosition: number): void {
@@ -41,28 +48,6 @@ export class SkillNode implements ISkillNodeStartData {
     const parentNodeChildren = Array.from(document.getElementById(String(this.parentNodeId)).children);
     const sameLevelSkillNodes = parentNodeChildren.filter((htmlElement: HTMLElement) => htmlElement.classList.contains('skill-node'));
     return sameLevelSkillNodes.length;
-  }
-
-  private setOrbitWidth(currentNodeDepthLevel: number): void {
-    this.skillNodeElements.orbitWidth = SkillNode.calculateOrbitWidth(currentNodeDepthLevel);
-  }
-
-  private setRotationRadius(currentNodeDepthLevel: number): void {
-    // should be half of parent node orbit width
-    this.skillNodeElements.rotationRadius = SkillNode.calculateOrbitWidth(currentNodeDepthLevel - 1);
-  }
-
-  private setRotationPeriod(currentNodeDepthLevel: number): void {
-    this.rotationPeriod = SkillNode.calculateNodeRotationPeriod(currentNodeDepthLevel)
-    this.skillNodeElements.rotationPeriod = this.rotationPeriod;
-  }
-
-  private static calculateOrbitWidth(currentNodeDepthLevel: number) {
-    return config.startOrbitWidth - currentNodeDepthLevel * 100;
-  }
-
-  private static calculateNodeRotationPeriod(currentNodeDepthLevel: number) {
-    return config.startRotationPeriod - 55 * currentNodeDepthLevel;
   }
 
   private getCurrentDepthLevel(): number {

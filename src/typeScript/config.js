@@ -1,5 +1,9 @@
 export const config = {
-    startOrbitWidth: 350,
-    startRotationPeriod: 180
+    startNodeWidth: 60,
+    startOrbitWidth: 450,
+    startRotationPeriod: 280
+};
+const depthNodeConfig = {
+    0: {}
 };
 //# sourceMappingURL=config.js.map

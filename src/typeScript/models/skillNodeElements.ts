@@ -4,6 +4,10 @@ export class SkillNodeElements {
   public nodeTitleElement: HTMLElement;
   public orbitElement: HTMLElement;
 
+  public set nodeWidth(width: number) {
+    this.nodeTitleElement.style.width = `${width}px`;
+  }
+
   public set animationDelay(animationDelay: number) {
     this.skillNodeElement.style.animationDelay =`${animationDelay}s`;
   }
@@ -25,7 +29,7 @@ export class SkillNodeElements {
    * create structure like this
    * <div class="skill-node">
    *   <div class="container" id="{{this.id}}">
-   *     <div>{{this.title}}</div>
+   *     <div class="node-title">{{this.title}}</div>
    *     <div class="orbit"></div>
    *   </div>
    * </div>
@@ -51,6 +55,7 @@ export class SkillNodeElements {
 
   public createNodeTitleElement(title: string): void {
     this.nodeTitleElement = document.createElement('div');
+    this.nodeTitleElement.classList.add('node-title');
     this.nodeTitleElement.innerText = title;
     this.containerElement.appendChild(this.nodeTitleElement);
   }

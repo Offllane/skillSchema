@@ -1,4 +1,7 @@
 export class SkillNodeElements {
+    set nodeWidth(width) {
+        this.nodeTitleElement.style.width = `${width}px`;
+    }
     set animationDelay(animationDelay) {
         this.skillNodeElement.style.animationDelay = `${animationDelay}s`;
     }
@@ -16,7 +19,7 @@ export class SkillNodeElements {
      * create structure like this
      * <div class="skill-node">
      *   <div class="container" id="{{this.id}}">
-     *     <div>{{this.title}}</div>
+     *     <div class="node-title">{{this.title}}</div>
      *     <div class="orbit"></div>
      *   </div>
      * </div>
@@ -39,6 +42,7 @@ export class SkillNodeElements {
     }
     createNodeTitleElement(title) {
         this.nodeTitleElement = document.createElement('div');
+        this.nodeTitleElement.classList.add('node-title');
         this.nodeTitleElement.innerText = title;
         this.containerElement.appendChild(this.nodeTitleElement);
     }

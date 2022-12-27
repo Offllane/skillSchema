@@ -9,3 +9,11 @@ interface ISkillNode extends ISkillNodeStartData {
   rotationPeriod: number;
   orbitWidth: number;
 }
+
+interface IDepthSkillNodeConfig {
+  nodeWidth: number;
+  orbitWidth: number;
+  rotationPeriod: number;
+}
+
+type INodesConfig = Record<number | 'default', IDepthSkillNodeConfig>

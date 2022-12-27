@@ -29,10 +29,18 @@ body .wrapper {
   aspect-ratio: 1/1;
   font-size: 14px;
   position: relative;
+  width: 100px;
+}
+.main-node .node-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 .main-node .orbit {
   position: absolute;
-  border: 2px solid rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   width: 500px;
   aspect-ratio: 1/1;
@@ -49,6 +57,12 @@ body .wrapper {
   box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 24px rgba(166, 180, 200, 0.7);
   aspect-ratio: 1/1;
   font-size: 14px;
+}
+.skill-node .node-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 .skill-node .container {
   position: relative;
