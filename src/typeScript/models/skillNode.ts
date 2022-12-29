@@ -1,6 +1,5 @@
 import {SkillNodeElements} from "./skillNodeElements.js";
 import {startData} from "../data.js";
-import {config} from "../configs.js";
 import {depthNodeConfig} from "../configs.js"
 
 export class SkillNode implements ISkillNodeStartData {
@@ -8,8 +7,7 @@ export class SkillNode implements ISkillNodeStartData {
   public parentNodeId!: number;
   public nodeTitle!: string;
   public sameLevelSkillNodesQuantity: number; // how many nodes with same orbit we have
-  public rotationPeriod = config.startRotationPeriod; // animation time
-  public orbitWidth = config.startOrbitWidth;
+  public orbitWidth = depthNodeConfig[0].orbitWidth;
 
   private skillNodeElements: SkillNodeElements = new SkillNodeElements();
 
@@ -26,21 +24,20 @@ export class SkillNode implements ISkillNodeStartData {
     this.skillNodeElements.createNodeStructure(this);
     this.skillNodeElements.addNodeToSchema(this.parentNodeId);
     this.setNodeParamsDependedOnDepth();
-
-    this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
   }
 
   private setNodeParamsDependedOnDepth(): void {
     const currentDepthLevel = this.getCurrentDepthLevel();
     const {nodeWidth, orbitWidth, rotationPeriod} = depthNodeConfig[currentDepthLevel];
     this.skillNodeElements.nodeWidth = nodeWidth;
-    this.skillNodeElements.orbitWidth = orbitWidth;
+    this.skillNodeElements.orbitWidth = this.orbitWidth = orbitWidth;
     this.skillNodeElements.rotationPeriod = rotationPeriod;
     this.skillNodeElements.rotationRadius = depthNodeConfig[currentDepthLevel - 1].orbitWidth; // parent node orbit width
+    this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition(), rotationPeriod);
   }
 
-  private setNodeStartPositionUsingDelay(currentOrderPosition: number): void {
-    const delayBetweenNodes = this.rotationPeriod / this.sameLevelSkillNodesQuantity;
+  private setNodeStartPositionUsingDelay(currentOrderPosition: number, rotationPeriod: number): void {
+    const delayBetweenNodes = rotationPeriod / this.sameLevelSkillNodesQuantity;
     this.skillNodeElements.animationDelay = -delayBetweenNodes * currentOrderPosition;
   }
 

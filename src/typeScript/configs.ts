@@ -1,36 +1,30 @@
-export const config = {
-  startNodeWidth: 60,
-  startOrbitWidth: 450,
-  startRotationPeriod: 280
-}
-
 export const depthNodeConfig: INodesConfig = {
-  0: {
-    nodeWidth: 50,
-    orbitWidth: 350,
-    rotationPeriod: 40
+  0: { // main node (center of the scheme)
+    nodeWidth: 75,
+    orbitWidth: 450,
+    rotationPeriod: 60
   },
-  1: {
-    nodeWidth: 50,
+  1: { // first ring of skills
+    nodeWidth: 65,
     orbitWidth: 250,
-    rotationPeriod: 40
+    rotationPeriod: 120
   },
-  2: {
+  2: { // second ring of skills
+    nodeWidth: 50,
+    orbitWidth: 120,
+    rotationPeriod: 80
+  },
+  3: { // second ring of skills
+    nodeWidth: 20,
+    orbitWidth: 350,
+    rotationPeriod: 50
+  },
+  4: { // second ring of skills
     nodeWidth: 50,
     orbitWidth: 350,
     rotationPeriod: 40
   },
-  3: {
-    nodeWidth: 50,
-    orbitWidth: 350,
-    rotationPeriod: 40
-  },
-  4: {
-    nodeWidth: 50,
-    orbitWidth: 350,
-    rotationPeriod: 40
-  },
-  'default': {
+  'default': { // if skill deep level more than we have in this config
     nodeWidth: 50,
     orbitWidth: 350,
     rotationPeriod: 40

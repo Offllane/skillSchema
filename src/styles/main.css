@@ -22,14 +22,13 @@ body .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   border-radius: 50%;
   background: #ECF0F3;
   box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 24px rgba(166, 180, 200, 0.7);
   aspect-ratio: 1/1;
   font-size: 14px;
   position: relative;
-  width: 100px;
 }
 .main-node .node-title {
   overflow: hidden;
@@ -51,7 +50,7 @@ body .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   border-radius: 50%;
   background: #ECF0F3;
   box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 24px rgba(166, 180, 200, 0.7);

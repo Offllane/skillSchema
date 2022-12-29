@@ -1,5 +1,4 @@
 import { startData } from "./data.js";
-import  {config} from "./configs.js";
 import {depthNodeConfig} from "./configs.js";
 import { SkillNode} from "./models/skillNode.js";
 

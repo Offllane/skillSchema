@@ -1,11 +1,9 @@
 import { SkillNodeElements } from "./skillNodeElements.js";
 import { startData } from "../data.js";
-import { config } from "../configs.js";
 import { depthNodeConfig } from "../configs.js";
 export class SkillNode {
     constructor(skillNodeData) {
-        this.rotationPeriod = config.startRotationPeriod; // animation time
-        this.orbitWidth = config.startOrbitWidth;
+        this.orbitWidth = depthNodeConfig[0].orbitWidth;
         this.skillNodeElements = new SkillNodeElements();
         this.id = skillNodeData.id;
         this.parentNodeId = skillNodeData.parentNodeId;
@@ -17,18 +15,18 @@ export class SkillNode {
         this.skillNodeElements.createNodeStructure(this);
         this.skillNodeElements.addNodeToSchema(this.parentNodeId);
         this.setNodeParamsDependedOnDepth();
-        this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition());
     }
     setNodeParamsDependedOnDepth() {
         const currentDepthLevel = this.getCurrentDepthLevel();
         const { nodeWidth, orbitWidth, rotationPeriod } = depthNodeConfig[currentDepthLevel];
         this.skillNodeElements.nodeWidth = nodeWidth;
-        this.skillNodeElements.orbitWidth = orbitWidth;
+        this.skillNodeElements.orbitWidth = this.orbitWidth = orbitWidth;
         this.skillNodeElements.rotationPeriod = rotationPeriod;
         this.skillNodeElements.rotationRadius = depthNodeConfig[currentDepthLevel - 1].orbitWidth; // parent node orbit width
+        this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition(), rotationPeriod);
     }
-    setNodeStartPositionUsingDelay(currentOrderPosition) {
-        const delayBetweenNodes = this.rotationPeriod / this.sameLevelSkillNodesQuantity;
+    setNodeStartPositionUsingDelay(currentOrderPosition, rotationPeriod) {
+        const delayBetweenNodes = rotationPeriod / this.sameLevelSkillNodesQuantity;
         this.skillNodeElements.animationDelay = -delayBetweenNodes * currentOrderPosition;
     }
     getCurrentOrderPosition() {

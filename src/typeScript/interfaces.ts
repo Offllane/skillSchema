@@ -6,7 +6,6 @@ interface ISkillNodeStartData {
 
 interface ISkillNode extends ISkillNodeStartData {
   sameLevelSkillNodesQuantity: number;
-  rotationPeriod: number;
   orbitWidth: number;
 }
 
