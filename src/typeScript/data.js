@@ -94,5 +94,40 @@ export const startData = [
         parentNodeId: 5,
         nodeTitle: 'Linter'
     },
+    {
+        id: 21,
+        parentNodeId: 17,
+        nodeTitle: 'Linter'
+    },
+    {
+        id: 22,
+        parentNodeId: 17,
+        nodeTitle: 'Linter'
+    },
+    {
+        id: 22,
+        parentNodeId: 17,
+        nodeTitle: 'Linter'
+    },
+    {
+        id: 22,
+        parentNodeId: 17,
+        nodeTitle: 'Linter'
+    },
+    {
+        id: 22,
+        parentNodeId: 17,
+        nodeTitle: 'Linter'
+    },
+    {
+        id: 22,
+        parentNodeId: 17,
+        nodeTitle: 'Linter'
+    },
+    {
+        id: 22,
+        parentNodeId: 17,
+        nodeTitle: 'Linter'
+    },
 ];
 //# sourceMappingURL=data.js.map

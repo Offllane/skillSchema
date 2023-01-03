@@ -17,6 +17,7 @@ export class SkillNode implements ISkillNodeStartData {
     this.nodeTitle = skillNodeData.nodeTitle;
     this.sameLevelSkillNodesQuantity = skillNodeData.sameLevelSkillNodesQuantity;
 
+    if (this.getCurrentDepthLevel() >= 5 ) { return; }
     this.createSkillNode();
   }
 
@@ -28,6 +29,10 @@ export class SkillNode implements ISkillNodeStartData {
 
   private setNodeParamsDependedOnDepth(): void {
     const currentDepthLevel = this.getCurrentDepthLevel();
+    if (currentDepthLevel === 4) {
+      this.skillNodeElements.nodeTitle = '';
+      this.skillNodeElements.skillNodeBackgroundColor = '#B0B0B0';
+    }
     const {nodeWidth, orbitWidth, rotationPeriod} = depthNodeConfig[currentDepthLevel];
     this.skillNodeElements.nodeWidth = nodeWidth;
     this.skillNodeElements.orbitWidth = this.orbitWidth = orbitWidth;

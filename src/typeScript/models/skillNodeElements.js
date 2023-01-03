@@ -15,6 +15,12 @@ export class SkillNodeElements {
     set rotationPeriod(rotationPeriod) {
         this.skillNodeElement.style.animation = `rotate ${rotationPeriod}s linear infinite`;
     }
+    set nodeTitle(title) {
+        this.nodeTitleElement.innerText = title;
+    }
+    set skillNodeBackgroundColor(color) {
+        this.skillNodeElement.style.border = `1px solid ${color}`;
+    }
     /**
      * create structure like this
      * <div class="skill-node">

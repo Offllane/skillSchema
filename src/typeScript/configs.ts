@@ -16,17 +16,17 @@ export const depthNodeConfig: INodesConfig = {
   },
   3: { // second ring of skills
     nodeWidth: 20,
-    orbitWidth: 350,
+    orbitWidth: 50,
     rotationPeriod: 50
   },
   4: { // second ring of skills
-    nodeWidth: 50,
-    orbitWidth: 350,
-    rotationPeriod: 40
+    nodeWidth: 2,
+    orbitWidth: 0,
+    rotationPeriod: 10
   },
   'default': { // if skill deep level more than we have in this config
-    nodeWidth: 50,
-    orbitWidth: 350,
-    rotationPeriod: 40
+    nodeWidth: 0,
+    orbitWidth: 0,
+    rotationPeriod: 0
   }
 }
