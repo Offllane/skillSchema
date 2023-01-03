@@ -87,4 +87,8 @@ export class SkillNodeElements {
     }
     parentNode.appendChild(this.skillNodeElement);
   }
+
+  public reverseRotation(): void {
+    this.skillNodeElement.style.animationDirection = 'reverse';
+  }
 }

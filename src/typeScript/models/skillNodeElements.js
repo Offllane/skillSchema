@@ -70,5 +70,8 @@ export class SkillNodeElements {
         }
         parentNode.appendChild(this.skillNodeElement);
     }
+    reverseRotation() {
+        this.skillNodeElement.style.animationDirection = 'reverse';
+    }
 }
 //# sourceMappingURL=skillNodeElements.js.map

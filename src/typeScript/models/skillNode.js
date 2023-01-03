@@ -21,16 +21,22 @@ export class SkillNode {
     }
     setNodeParamsDependedOnDepth() {
         const currentDepthLevel = this.getCurrentDepthLevel();
-        if (currentDepthLevel === 4) {
-            this.skillNodeElements.nodeTitle = '';
-            this.skillNodeElements.skillNodeBackgroundColor = '#B0B0B0';
-        }
         const { nodeWidth, orbitWidth, rotationPeriod } = depthNodeConfig[currentDepthLevel];
         this.skillNodeElements.nodeWidth = nodeWidth;
         this.skillNodeElements.orbitWidth = this.orbitWidth = orbitWidth;
         this.skillNodeElements.rotationPeriod = rotationPeriod;
         this.skillNodeElements.rotationRadius = depthNodeConfig[currentDepthLevel - 1].orbitWidth; // parent node orbit width
         this.setNodeStartPositionUsingDelay(this.getCurrentOrderPosition(), rotationPeriod);
+        this.setParamsRelatedToDepthLevel(currentDepthLevel);
+    }
+    setParamsRelatedToDepthLevel(depthLevel) {
+        if (depthLevel === 4) {
+            this.skillNodeElements.nodeTitle = '';
+            this.skillNodeElements.skillNodeBackgroundColor = '#B0B0B0';
+        }
+        if (depthLevel % 3 === 0) {
+            this.skillNodeElements.reverseRotation();
+        }
     }
     setNodeStartPositionUsingDelay(currentOrderPosition, rotationPeriod) {
         const delayBetweenNodes = rotationPeriod / this.sameLevelSkillNodesQuantity;

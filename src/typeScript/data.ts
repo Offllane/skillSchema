@@ -129,4 +129,14 @@ export const startData: Array<ISkillNodeStartData> = [
     parentNodeId: 17,
     nodeTitle: 'Linter'
   },
+  {
+    id: 23,
+    parentNodeId: 13,
+    nodeTitle: 'Linter'
+  },
+  {
+    id: 23,
+    parentNodeId: 23,
+    nodeTitle: 'Linter'
+  },
 ]
