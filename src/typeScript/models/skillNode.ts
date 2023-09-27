@@ -21,7 +21,8 @@ export class SkillNode implements ISkillNodeStartData {
     this.createSkillNode();
   }
 
-  private createSkillNode() {
+  public createSkillNode() {
+    if (!document.getElementById(String(this.parentNodeId))) { return; }
     this.skillNodeElements.createNodeStructure(this);
     this.skillNodeElements.addNodeToSchema(this.parentNodeId);
     this.setNodeParamsDependedOnDepth();
@@ -71,8 +72,9 @@ export class SkillNode implements ISkillNodeStartData {
     return depthLevel;
   }
 
-  private getParentSkillNode(nodeId: number): ISkillNodeStartData | null {
-    if (nodeId === 0) { return null; }
-    return startData.find(skillNode => skillNode.id == nodeId);
+  private getParentSkillNode(nodeId: number | null): ISkillNodeStartData | null {
+    const parentNode = startData.find(skillNode => skillNode.id == nodeId);
+    if (nodeId === 0 || parentNode?.main) { return null; }
+    return parentNode;
   }
 }

@@ -1,8 +1,14 @@
 export const startData: Array<ISkillNodeStartData> = [
   {
+    id: 0,
+    parentNodeId: null,
+    nodeTitle: 'Skills',
+    main: true
+  },
+  {
     id: 1,
     parentNodeId: 0,
-    nodeTitle: 'Frontend'
+    nodeTitle: 'Frontend',
   },
   {
     id: 2,

@@ -28,6 +28,7 @@ body .wrapper {
   box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 24px rgba(166, 180, 200, 0.7);
   aspect-ratio: 1/1;
   font-size: 14px;
+  cursor: pointer;
   position: relative;
 }
 .main-node .node-title {
@@ -43,6 +44,10 @@ body .wrapper {
   border-radius: 50%;
   width: 500px;
   aspect-ratio: 1/1;
+  transition: 0.1s;
+}
+.main-node .orbit:hover {
+  background-color: rgba(23, 94, 201, 0.1);
 }
 
 .skill-node {
@@ -56,6 +61,7 @@ body .wrapper {
   box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 24px rgba(166, 180, 200, 0.7);
   aspect-ratio: 1/1;
   font-size: 14px;
+  cursor: pointer;
 }
 .skill-node .node-title {
   overflow: hidden;

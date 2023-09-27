@@ -1,24 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-@mixin skill-node {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  border-radius: 50%;
-  background: #ECF0F3;
-  box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 24px rgba(166, 180, 200, 0.7);
-  aspect-ratio: 1 / 1;
-  font-size: 14px;
-
-  .node-title {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-}
+@import './mixins.scss';
 
 * {
   margin: 0;
@@ -49,6 +30,11 @@ body {
     border-radius: 50%;
     width: 500px;
     aspect-ratio: 1 / 1;
+    transition: .1s;
+
+    &:hover {
+      background-color: rgba(23, 94, 201, 0.1);
+    }
   }
 }
 

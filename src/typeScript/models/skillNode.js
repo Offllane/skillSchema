@@ -15,6 +15,9 @@ export class SkillNode {
         this.createSkillNode();
     }
     createSkillNode() {
+        if (!document.getElementById(String(this.parentNodeId))) {
+            return;
+        }
         this.skillNodeElements.createNodeStructure(this);
         this.skillNodeElements.addNodeToSchema(this.parentNodeId);
         this.setNodeParamsDependedOnDepth();
@@ -57,10 +60,11 @@ export class SkillNode {
         return depthLevel;
     }
     getParentSkillNode(nodeId) {
-        if (nodeId === 0) {
+        const parentNode = startData.find(skillNode => skillNode.id == nodeId);
+        if (nodeId === 0 || (parentNode === null || parentNode === void 0 ? void 0 : parentNode.main)) {
             return null;
         }
-        return startData.find(skillNode => skillNode.id == nodeId);
+        return parentNode;
     }
 }
 //# sourceMappingURL=skillNode.js.map

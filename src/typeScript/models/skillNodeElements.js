@@ -55,6 +55,7 @@ export class SkillNodeElements {
     createOrbitElement(orbitWidth) {
         this.orbitElement = document.createElement('div');
         this.orbitElement.classList.add('orbit');
+        this.orbitElement.id = String(this.containerElement.id);
         this.orbitElement.style.width = `${orbitWidth}px`;
         this.containerElement.appendChild(this.orbitElement);
     }
