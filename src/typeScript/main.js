@@ -29,17 +29,45 @@ function setMainNode() {
 function setMainNodeStartValues() {
     const { nodeWidth, orbitWidth } = depthNodeConfig[0];
     document.getElementById('zero-orbit').style.width = `${orbitWidth}px`;
-    document.getElementById('zero-node-title').style.width = `${nodeWidth}px`;
+    document.getElementById('zero-node-title').parentNode.style.width = `${nodeWidth}px`;
 }
 function redrawSchema(mainNodeId) {
-    wrapperElement.innerHTML = '';
     const mainSkillNode = getMainSkillNode();
     mainSkillNode.main = false;
     const newMainSkillNode = getNodeById(mainNodeId);
     newMainSkillNode.main = true;
-    setMainNode();
-    setMainNodeStartValues();
-    addSkillNodesToSchema();
+    animateRedrawing(mainNodeId);
+    setTimeout(() => {
+        wrapperElement.innerHTML = '';
+        setMainNode();
+        setMainNodeStartValues();
+        addSkillNodesToSchema();
+    }, 1500);
+}
+function animateRedrawing(mainNodeId) {
+    const animationDuration = 1500;
+    const animationParams = {
+        duration: animationDuration,
+        fill: 'forwards'
+    };
+    const zeroOrbit = document.getElementById('zero-orbit');
+    const zeroOrbitChildSkillNodes = zeroOrbit.parentNode.childNodes;
+    const newMainSkillNodeContainerElement = document.getElementById(mainNodeId);
+    const newMainSkillNodeOrbitElement = newMainSkillNodeContainerElement.getElementsByClassName('orbit')[0];
+    const newMainSkillNodeElement = newMainSkillNodeContainerElement.parentNode;
+    const childSkillNodes = newMainSkillNodeContainerElement.childNodes;
+    zeroOrbit.animate({
+        width: '1500px',
+    }, animationParams);
+    newMainSkillNodeElement.animate({
+        width: depthNodeConfig[0].nodeWidth + 'px',
+        transform: 'translateX(0)'
+    }, animationParams);
+    newMainSkillNodeOrbitElement.animate({
+        width: depthNodeConfig[0].orbitWidth + 'px',
+    }, animationParams);
+    increaseChildNodesOrbit(zeroOrbitChildSkillNodes, 500, 1500, 1300);
+    increaseChildNodesOrbit(childSkillNodes, 250, 500, 1300);
 }
 function addSkillNodesToSchema() {
     skillNodesArray.forEach((skillNode) => skillNode.createSkillNode());
@@ -49,6 +77,21 @@ function getMainSkillNode() {
 }
 function getNodeById(nodeId) {
     return startData.find((skillNode) => String(skillNode.id) === nodeId);
+}
+function increaseChildNodesOrbit(childNodes, _currentOrbitWidth, orbitWidth, duration) {
+    const intervalMS = Math.floor(duration / (orbitWidth - _currentOrbitWidth));
+    childNodes.forEach(childNode => {
+        const child = childNode;
+        if (!child.classList.contains('skill-node')) {
+            return;
+        }
+        let currentOrbitWidth = _currentOrbitWidth;
+        setInterval(() => {
+            if (currentOrbitWidth < orbitWidth)
+                currentOrbitWidth += 3;
+            child.style.setProperty('--halfOfOrbitWidth', `${currentOrbitWidth / 2}px`);
+        }, intervalMS);
+    });
 }
 document.addEventListener('click', (event) => {
     if (!event.target.classList.contains('orbit')) {
